@@ -11,13 +11,11 @@ function App() {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
-  // Calendar setup for October 2025
   const year = 2025;
-  const month = 9; // JS months are 0-indexed (0=Jan, 9=Oct)
-  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun, 1=Mon, ...
+  const month = 9;
+  const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // Create calendar grid with blanks before first day
   const daysArray = Array.from({ length: firstDay }, () => null).concat(
     Array.from({ length: daysInMonth }, (_, i) => i + 1)
   );
@@ -34,7 +32,6 @@ function App() {
     <div style={{ textAlign: "center", fontFamily: "Arial" }}>
       <h2>October 2025 Calendar</h2>
 
-      {/* Weekday headers */}
       <div
         style={{
           display: "grid",
@@ -50,7 +47,6 @@ function App() {
         ))}
       </div>
 
-      {/* Calendar grid */}
       <div
         style={{
           display: "grid",
@@ -62,7 +58,7 @@ function App() {
       >
         {daysArray.map((day, index) => {
           if (day === null) {
-            return <div key={index}></div>; // empty space before month starts
+            return <div key={index}></div>;
           }
 
           const isSelected = selectedDate === day;
@@ -72,10 +68,10 @@ function App() {
           let color = "black";
 
           if (hasEvent) {
-            backgroundColor = "#8495ac"; // light blue for event days
+            backgroundColor = "#8495ac";
           }
           if (isSelected) {
-            backgroundColor = "#2e28a6"; // dark blue for selected
+            backgroundColor = "#2e28a6";
             color = "white";
           }
 
@@ -100,7 +96,6 @@ function App() {
         })}
       </div>
 
-      {/* Event details */}
       <div style={{ marginTop: "20px" }}>
         {selectedDate ? (
           selectedEvents.length > 0 ? (
